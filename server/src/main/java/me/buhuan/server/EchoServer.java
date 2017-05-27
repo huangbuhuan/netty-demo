@@ -3,7 +3,6 @@ package me.buhuan.server;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
-import io.netty.channel.EventLoop;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
@@ -12,6 +11,7 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 import java.net.InetSocketAddress;
 
 /**
+ * 绑定服务器到监听的端口，配置Channel，将入站消息通知给EchoServerHandler实例
  * @version 1.0.0
  * @since 2017/5/25上午12:55
  */
