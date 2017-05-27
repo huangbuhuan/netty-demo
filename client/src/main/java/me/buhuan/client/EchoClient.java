@@ -27,6 +27,12 @@ public class EchoClient {
     public void start() throws Exception{
         EventLoopGroup group = new NioEventLoopGroup();
         try {
+            /**
+             * 创建Bootstrap
+             * 指定EventLoopGroup
+             * 适用于NIO传输的Channel类型
+             * 创建Channel时，向ChannelPipeline中添加一个EchoClientHandler实例
+             */
             Bootstrap b = new Bootstrap();
             b.group(group)
              .channel(NioSocketChannel.class)
@@ -37,7 +43,9 @@ public class EchoClient {
                      socketChannel.pipeline().addLast(new EchoClientHandle());
                  }
              });
+            // 连接远程节点直到连接完成
             ChannelFuture future = b.connect().sync();
+            // 阻塞直到Channel关闭
             future.channel().closeFuture().sync();
         } finally {
             group.shutdownGracefully().sync();
